@@ -74,10 +74,10 @@ import type { DropdownOption, OptionTypes} from '@/types/dropdown'
  * ------------------------------------
  */
 
-const isDark = ref(localStorage.theme === 'dark')
-const language = ref('')
-const character = ref('')
-const romanization = ref('')
+const isDark = ref<boolean>(localStorage.theme === 'dark')
+const language = ref<string>('')
+const character = ref<string>('')
+const romanization = ref<string>('')
 
 const romanizationOptions = computed((): DropdownOption[] => {
     return language.value === LANGUAGE.MANDARIN ? romanizationMandarinOptions : romanizationCantoneseOptions
