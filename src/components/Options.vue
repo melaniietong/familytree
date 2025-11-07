@@ -107,7 +107,7 @@ const toggleDarkMode = (): void => {
 
 /*
  * ------------------------------------
- * Option watchers
+ * Handle selection
  * ------------------------------------
  */
 
