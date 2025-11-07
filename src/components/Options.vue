@@ -50,13 +50,11 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, computed, onMounted, watchEffect } from 'vue'
+import { onMounted, watchEffect } from 'vue'
 import Dropdown from './Dropdown.vue'
 import { 
     characterOptions, 
     languageOptions, 
-    romanizationCantoneseOptions, 
-    romanizationMandarinOptions 
 } from '@/data/options'
 import { 
     CHARACTER, 
@@ -66,28 +64,18 @@ import {
     LANGUAGE_KEY,
     ROMANIZATION_KEY
 } from '@/constants/constants'
-import type { DropdownOption, OptionTypes} from '@/types/dropdown'
+import { useOptions } from '@/composables/useOptions'
 
-/*
- * ------------------------------------
- * State
- * ------------------------------------
- */
-
-const isDark = ref<boolean>(localStorage.theme === 'dark')
-const language = ref<string>('')
-const character = ref<string>('')
-const romanization = ref<string>('')
-
-const romanizationOptions = computed((): DropdownOption[] => {
-    return language.value === LANGUAGE.MANDARIN ? romanizationMandarinOptions : romanizationCantoneseOptions
-})
-
-/*
- * ------------------------------------
- * Dark mode
- * ------------------------------------
- */
+const { 
+    isDark,
+    character,
+    language,
+    romanization,
+    romanizationOptions,
+    
+    toggleDarkMode,
+    updateOption
+} = useOptions()
 
 watchEffect((): void => {
     const root = document.documentElement
@@ -100,47 +88,6 @@ watchEffect((): void => {
         localStorage.theme = 'light'
     }
 })
-
-const toggleDarkMode = (): void => {
-    isDark.value = !isDark.value
-}
-
-/*
- * ------------------------------------
- * Handle selection
- * ------------------------------------
- */
-
-const updateOption = (selectedOption: string, option: OptionTypes): void => {
-    switch (option) {
-        case CHARACTER_KEY: {
-            character.value = selectedOption
-            localStorage.character = selectedOption
-            break
-        }
-
-        case LANGUAGE_KEY: {
-            language.value = selectedOption
-
-            // when language changes, set default romanization
-            romanization.value = selectedOption === LANGUAGE.MANDARIN ? ROMANIZATION.PINYIN : ROMANIZATION.JYUTPING
-            localStorage.romanization = romanization.value
-            break
-        }
-
-        case ROMANIZATION_KEY: {
-            romanization.value = selectedOption
-            localStorage.romanization = selectedOption
-            break
-        }
-    }
-}
-
-/*
- * ------------------------------------
- * Set initial state
- * ------------------------------------
- */
 
 onMounted((): void => {
     language.value = localStorage.language ?? LANGUAGE.CANTONESE
