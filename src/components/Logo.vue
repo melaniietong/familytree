@@ -30,8 +30,8 @@
 <script setup lang='ts'>
 import { ref, computed, onMounted } from 'vue'
 
-const bgColor = '#B71E1E'
-const width = ref(window.innerWidth)
+const bgColor: string = '#B71E1E'
+const width = ref<number>(window.innerWidth)
 const size = computed((): number => (width.value >= 1024 ? 200 : 150))
 
 const handleResize = (): number => (width.value = window.innerWidth)

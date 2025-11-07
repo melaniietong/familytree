@@ -21,6 +21,6 @@ export const ROMANIZATION = {
 
 export type Romanizations = (typeof ROMANIZATION)[keyof typeof ROMANIZATION]
 
-export const LANGUAGE_KEY = 'lang'
-export const CHARACTER_KEY = 'char'
-export const ROMANIZATION_KEY = 'rom'
+export const LANGUAGE_KEY: string = 'lang'
+export const CHARACTER_KEY: string = 'char'
+export const ROMANIZATION_KEY: string = 'rom'
