@@ -20,3 +20,7 @@ export const ROMANIZATION = {
 } as const
 
 export type Romanizations = (typeof ROMANIZATION)[keyof typeof ROMANIZATION]
+
+export const LANGUAGE_KEY = 'lang'
+export const CHARACTER_KEY = 'char'
+export const ROMANIZATION_KEY = 'rom'

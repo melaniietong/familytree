@@ -41,7 +41,7 @@
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import type { DropdownOption } from '@/types/Dropdown'
+import type { DropdownOption } from '@/types/dropdown'
 
 const props = defineProps<{
     modelValue: string

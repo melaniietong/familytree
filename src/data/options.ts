@@ -1,6 +1,6 @@
-import type { DropdownOption } from '@/types/Dropdown'
 import { LANGUAGE, CHARACTER, ROMANIZATION } from '@/constants/constants'
 import { formatLabel } from '@/utils/strings'
+import type { DropdownOption } from '@/types/dropdown'
 
 export const characterOptions: DropdownOption[] = [
     { value: CHARACTER.TRADITIONAL, label: formatLabel(CHARACTER.TRADITIONAL) },

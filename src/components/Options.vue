@@ -7,7 +7,8 @@
             <Dropdown 
                 v-model="character"
                 :options="characterOptions"
-                key='char' />
+                key='char' 
+                @update:modelValue="e => updateOption(e, CHARACTER_KEY)"/>
         </div>
     
         <div class='flex flex-row justify-between items-center'>
@@ -17,7 +18,8 @@
             <Dropdown 
                 v-model="language"
                 :options="languageOptions"
-                key='lang' />
+                key='lang' 
+                @update:modelValue="e => updateOption(e, LANGUAGE_KEY)" />
         </div>
         
         <div class='flex flex-row justify-between items-center'>
@@ -27,7 +29,8 @@
             <Dropdown 
                 v-model="romanization"
                 :options="romanizationOptions"
-                key='romanization' />
+                key='rom' 
+                @update:modelValue="e => updateOption(e, ROMANIZATION_KEY)" />
         </div>
     
         <div class='flex flex-row justify-between items-center'>
@@ -47,7 +50,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, watch, computed, onMounted, watchEffect } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
 import Dropdown from './Dropdown.vue'
 import { 
     characterOptions, 
@@ -55,8 +58,15 @@ import {
     romanizationCantoneseOptions, 
     romanizationMandarinOptions 
 } from '@/data/options'
-import { CHARACTER, LANGUAGE, ROMANIZATION } from '@/constants/constants'
-import type { DropdownOption } from '@/types/Dropdown'
+import { 
+    CHARACTER, 
+    LANGUAGE, 
+    ROMANIZATION,
+    CHARACTER_KEY,
+    LANGUAGE_KEY,
+    ROMANIZATION_KEY
+} from '@/constants/constants'
+import type { DropdownOption, OptionTypes} from '@/types/dropdown'
 
 /*
  * ------------------------------------
@@ -101,21 +111,30 @@ const toggleDarkMode = (): void => {
  * ------------------------------------
  */
 
-watch(language, (newLang): void => {
-    // When the selected language changes, reset romanization to the new language's default
-    romanization.value = newLang === LANGUAGE.MANDARIN ? ROMANIZATION.PINYIN : ROMANIZATION.JYUTPING
-    
-    localStorage.language = newLang
-    localStorage.romanization = romanization.value
-})
+const updateOption = (selectedOption: string, option: OptionTypes): void => {
+    switch (option) {
+        case CHARACTER_KEY: {
+            character.value = selectedOption
+            localStorage.character = selectedOption
+            break
+        }
 
-watch(character, (val): void => {
-    localStorage.character = val
-})
+        case LANGUAGE_KEY: {
+            language.value = selectedOption
 
-watch(romanization, (val): void => {
-    localStorage.romanization = val
-})
+            // when language changes, set default romanization
+            romanization.value = selectedOption === LANGUAGE.MANDARIN ? ROMANIZATION.PINYIN : ROMANIZATION.JYUTPING
+            localStorage.romanization = romanization.value
+            break
+        }
+
+        case ROMANIZATION_KEY: {
+            romanization.value = selectedOption
+            localStorage.romanization = selectedOption
+            break
+        }
+    }
+}
 
 /*
  * ------------------------------------
@@ -127,9 +146,5 @@ onMounted((): void => {
     language.value = localStorage.language ?? LANGUAGE.CANTONESE
     character.value = localStorage.character ?? CHARACTER.TRADITIONAL
     romanization.value = localStorage.romanization ?? (language.value === LANGUAGE.MANDARIN ? ROMANIZATION.PINYIN : ROMANIZATION.JYUTPING)
-    
-    localStorage.language = language.value
-    localStorage.character = character.value
-    localStorage.romanization = romanization.value
 })
 </script>
