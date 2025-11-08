@@ -20,7 +20,7 @@ export const tts = (text: string, lang: Languages) => {
 
     const speech = new SpeechSynthesisUtterance(text)
     speech.lang = voiceOption
-    speech.rate = 1
+    speech.rate = 0.5
     speech.pitch = 1
 
     window.speechSynthesis.speak(speech)

@@ -43,7 +43,7 @@
                         {{ person['language'][language][PHONETIC_KEY][phonetic] }}
                     </span>
 
-                    <h1 class='text-4xl text-neutral-950 dark:text-neutral-50'>
+                    <h1 class='text-4xl text-neutral-950 dark:text-neutral-50 font-semibold'>
                         {{ person['language'][language][CHARACTER_KEY][character] }}
                     </h1>
 
