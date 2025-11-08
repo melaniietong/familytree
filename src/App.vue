@@ -1,5 +1,5 @@
 <template>
-  <div class='flex h-screen bg-neutral-50 dark:bg-red-800 overflow-hidden'>
+  <div class='flex h-screen bg-neutral-50 dark:bg-neutral-700 overflow-hidden'>
     <Sidebar
       :person=selectedPerson
       :sidebarOpen=sidebarOpen
@@ -27,10 +27,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Sidebar from './components/Sidebar.vue'
 import { data } from './data/data'
+import { cardHtml } from './utils/card'
+import { useOptions } from './composables/useOptions'
 
 const selectedPerson = ref<Record<string, any> | null>(null)
 const sidebarOpen = ref<boolean>(false)
 const isDesktop = ref<boolean>(window.innerWidth >= 1024)
+
+const { character, language, phonetic, isDark } = useOptions()
 
 let chart: any = null
 
@@ -39,15 +43,14 @@ async function initChart() {
   const el = document.getElementById('chart')
   if (!el) return
 
-  chart = f3.createChart('#chart', data)
+  chart = f3
+    .createChart('#chart', data)
+    .setCardXSpacing(250)
+    .setCardYSpacing(280)
+
   chart
     .setCardHtml()
-    .setCardInnerHtmlCreator(
-      (d: any) => `
-        <div class='bg-yellow-700 text-white w-[200px] h-[70px] p-[15px] rounded-md text-center cursor-pointer'>
-          <div>${d.data.data['eng']}</div>
-        </div>
-    `)
+    .setCardInnerHtmlCreator((d: any) => cardHtml(d.data.data))
     .setOnCardClick((e: any, d: any) => {
       selectedPerson.value = d.data.data
       if (!isDesktop.value) sidebarOpen.value = true
@@ -59,7 +62,7 @@ async function initChart() {
 
 /*
  * ------------------------------------
- * Chart position
+ * Chart drawing
  * ------------------------------------
  */
 
@@ -80,6 +83,10 @@ watch(sidebarOpen, (open): void => {
   }
 })
 
+watch([character, language, phonetic], () => {
+  chart?.updateTree?.()
+})
+
 /*
  * ------------------------------------
  * Initial event
@@ -95,3 +102,13 @@ onBeforeUnmount((): void => {
   window.removeEventListener('resize', handleResize)
 })
 </script>
+
+<style>
+.link {
+  stroke: #000000;
+}
+
+.dark .link {
+  stroke: #FFFFFF;
+}
+</style>
