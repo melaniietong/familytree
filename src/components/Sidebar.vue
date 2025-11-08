@@ -21,7 +21,7 @@
                     <Logo />
 
                     <p class='text-base text-neutral-950 dark:text-neutral-50'>
-                        Learning Chinese family terms can be confusing. This app makes it easier and interactive!
+                        Chinese family terms can be confusing. This app makes it easier and interactive!
                     </p>
 
                     <div class='flex flex-row justify-items-center items-center gap-4 bg-neutral-200 dark:bg-neutral-700 rounded-2xl px-6 py-4'>
