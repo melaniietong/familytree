@@ -4,14 +4,14 @@ import { CHARACTER_KEY, PHONETIC_KEY } from '@/constants/constants'
 const { character, language, phonetic } = useOptions()
 
 export const cardHtml = (data: Record<string, any>): string => `
-    <div class='bg-neutral-200 dark:bg-neutral-800 text-white w-[150px] h-[230px] p-2 rounded-md cursor-pointer flex flex-col items-center justify-center gap-2'>
+    <div class='bg-neutral-200 dark:bg-neutral-800 w-[150px] h-[230px] p-2 rounded-md cursor-pointer flex flex-col items-center justify-center gap-2'>
         <div class='flex flex-col gap-1 items-center'>
             <span class='text-xs text-neutral-950 dark:text-neutral-50'>
-                ${data[PHONETIC_KEY][language.value][phonetic.value]}
+                ${data['language'][language.value][PHONETIC_KEY][phonetic.value]}
             </span>
 
             <span class='text-xl text-neutral-950 dark:text-neutral-50 font-semibold'>
-                ${data[CHARACTER_KEY][character.value]}
+                ${data['language'][language.value][CHARACTER_KEY][character.value]}
             </span>
         </div>
 
@@ -19,8 +19,14 @@ export const cardHtml = (data: Record<string, any>): string => `
             
         </div>
 
-        <div class='text-base text-neutral-950 dark:text-neutral-50'>
-            ${data['eng']}
+        <div class='flex flex-col gap-1 items-center'>
+            <span class='text-base text-neutral-950 dark:text-neutral-50'>
+                ${data['eng']}
+            </span>
+
+            <span class='text-xs text-neutral-950 dark:text-neutral-50'>
+                ${data['engSubtitle']}
+            </span>
         </div>
     </div>
 `
