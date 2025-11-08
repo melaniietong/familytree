@@ -1,9 +1,9 @@
 import { ref, computed } from 'vue'
-import { CHARACTER_KEY, LANGUAGE_KEY, ROMANIZATION_KEY } from '@/constants/constants'
-import { LANGUAGE, ROMANIZATION } from '@/constants/constants'
+import { CHARACTER_KEY, LANGUAGE_KEY, PHONETIC_KEY } from '@/constants/constants'
+import { LANGUAGE, PHONETIC_DATA_KEY } from '@/constants/constants'
 import { 
-    romanizationMandarinOptions, 
-    romanizationCantoneseOptions
+    phoneticMandarinOptions, 
+    phoneticCantoneseOptions
 } from '@/data/options'
 import type { OptionTypes } from '@/types/dropdown'
 import type { DropdownOption } from '@/types/dropdown'
@@ -18,10 +18,10 @@ const isDark = ref<boolean>(localStorage.theme === 'dark')
 
 const character = ref<string>('')
 const language = ref<string>('')
-const romanization = ref<string>('')
+const phonetic = ref<string>('')
 
-const romanizationOptions = computed((): DropdownOption[] => {
-    return language.value === LANGUAGE.MANDARIN ? romanizationMandarinOptions : romanizationCantoneseOptions
+const phoneticOptions = computed((): DropdownOption[] => {
+    return language.value === LANGUAGE.MANDARIN ? phoneticMandarinOptions : phoneticCantoneseOptions
 })
 
 /*
@@ -42,15 +42,15 @@ const updateOption = (selectedOption: string, option: OptionTypes): void => {
             language.value = selectedOption
             localStorage.language = selectedOption
 
-            // when language changes, set default romanization
-            romanization.value = selectedOption === LANGUAGE.MANDARIN ? ROMANIZATION.PINYIN : ROMANIZATION.JYUTPING
-            localStorage.romanization = romanization.value
+            // When language changes, set default phonetic
+            phonetic.value = selectedOption === LANGUAGE.MANDARIN ? PHONETIC_DATA_KEY.PINYIN : PHONETIC_DATA_KEY.JYUTPING
+            localStorage.phonetic = phonetic.value
             break
         }
 
-        case ROMANIZATION_KEY: {
-            romanization.value = selectedOption
-            localStorage.romanization = selectedOption
+        case PHONETIC_KEY: {
+            phonetic.value = selectedOption
+            localStorage.phonetic = selectedOption
             break
         }
     }
@@ -73,8 +73,8 @@ export function useOptions() {
         isDark,
         character,
         language,
-        romanization,
-        romanizationOptions,
+        phonetic,
+        phoneticOptions,
         
         toggleDarkMode,
         updateOption

@@ -36,6 +36,7 @@
                 </div>
             </div>
 
+            <!-- Options -->
             <Options />
         </div>
     </aside>

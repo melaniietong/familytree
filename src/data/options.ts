@@ -1,10 +1,16 @@
-import { LANGUAGE, CHARACTER, ROMANIZATION } from '@/constants/constants'
+import { 
+    LANGUAGE, 
+    CHARACTER, 
+    CHARACTER_DATA_KEY, 
+    PHONETIC, 
+    PHONETIC_DATA_KEY 
+} from '@/constants/constants'
 import { formatLabel } from '@/utils/strings'
 import type { DropdownOption } from '@/types/dropdown'
 
 export const characterOptions: DropdownOption[] = [
-    { value: CHARACTER.TRADITIONAL, label: formatLabel(CHARACTER.TRADITIONAL) },
-    { value: CHARACTER.SIMPLIFIED, label: formatLabel(CHARACTER.SIMPLIFIED) }
+    { value: CHARACTER_DATA_KEY.TRADITIONAL, label: formatLabel(CHARACTER.TRADITIONAL) },
+    { value: CHARACTER_DATA_KEY.SIMPLIFIED, label: formatLabel(CHARACTER.SIMPLIFIED) }
 ]
 
 export const languageOptions: DropdownOption[] = [
@@ -12,12 +18,12 @@ export const languageOptions: DropdownOption[] = [
     { value: LANGUAGE.CANTONESE, label: formatLabel(LANGUAGE.CANTONESE) }
 ]
 
-export const romanizationCantoneseOptions: DropdownOption[] = [
-    { value: ROMANIZATION.JYUTPING, label: formatLabel(ROMANIZATION.JYUTPING) },
-    { value: ROMANIZATION.YALE, label: formatLabel(ROMANIZATION.YALE) }
+export const phoneticCantoneseOptions: DropdownOption[] = [
+    { value: PHONETIC_DATA_KEY.JYUTPING, label: formatLabel(PHONETIC.JYUTPING) },
+    { value: PHONETIC_DATA_KEY.YALE, label: formatLabel(PHONETIC.YALE) }
 ]
 
-export const romanizationMandarinOptions: DropdownOption[] = [
-    { value: ROMANIZATION.PINYIN, label: formatLabel(ROMANIZATION.PINYIN) },
-    { value: ROMANIZATION.ZHUYIN, label: formatLabel(ROMANIZATION.ZHUYIN) }
+export const phoneticMandarinOptions: DropdownOption[] = [
+    { value: PHONETIC_DATA_KEY.PINYIN, label: formatLabel(PHONETIC.PINYIN) },
+    { value: PHONETIC_DATA_KEY.ZHUYIN, label: formatLabel(PHONETIC.ZHUYIN) }
 ]

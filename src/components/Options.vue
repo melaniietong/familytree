@@ -24,13 +24,13 @@
         
         <div class='flex flex-row justify-between items-center'>
             <span class='text-xs text-neutral-600 dark:text-neutral-400'>
-                Romanization
+                Phonetics
             </span>
             <Dropdown 
-                v-model="romanization"
-                :options="romanizationOptions"
+                v-model="phonetic"
+                :options="phoneticOptions"
                 key='rom' 
-                @update:modelValue="e => updateOption(e, ROMANIZATION_KEY)" />
+                @update:modelValue="e => updateOption(e, PHONETIC_KEY)" />
         </div>
     
         <div class='flex flex-row justify-between items-center'>
@@ -54,12 +54,12 @@ import { onMounted, watchEffect } from 'vue'
 import Dropdown from './Dropdown.vue'
 import { characterOptions, languageOptions } from '@/data/options'
 import { 
-    CHARACTER, 
     LANGUAGE, 
-    ROMANIZATION,
     CHARACTER_KEY,
+    CHARACTER_DATA_KEY, 
     LANGUAGE_KEY,
-    ROMANIZATION_KEY
+    PHONETIC_KEY,
+    PHONETIC_DATA_KEY
 } from '@/constants/constants'
 import { useOptions } from '@/composables/useOptions'
 
@@ -67,8 +67,8 @@ const {
     isDark,
     character,
     language,
-    romanization,
-    romanizationOptions,
+    phonetic,
+    phoneticOptions,
     
     toggleDarkMode,
     updateOption
@@ -88,7 +88,7 @@ watchEffect((): void => {
 
 onMounted((): void => {
     language.value = localStorage.language ?? LANGUAGE.CANTONESE
-    character.value = localStorage.character ?? CHARACTER.TRADITIONAL
-    romanization.value = localStorage.romanization ?? (language.value === LANGUAGE.MANDARIN ? ROMANIZATION.PINYIN : ROMANIZATION.JYUTPING)
+    character.value = localStorage.character ?? CHARACTER_DATA_KEY.TRADITIONAL
+    phonetic.value = localStorage.phonetic ?? (language.value === LANGUAGE.MANDARIN ? PHONETIC_DATA_KEY.PINYIN : PHONETIC_DATA_KEY.JYUTPING)
 })
 </script>

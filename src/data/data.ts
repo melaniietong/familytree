@@ -4,14 +4,13 @@ import type { Data } from 'family-chart'
  * GUIDE
  * - eng (english)
  * - char (characters): simp (simplified) / trad (traditional)
- * - phon (phonetics):
- *    - man (mandarin): py (pinyin) / zy (zhuyin)
- *    - can (cantonese): jp (jyutping) / yale
+ * - phon (phonetic):
+ *    - mandarin: py (pinyin) / zy (zhuyin)
+ *    - cantonese: jp (jyutping) / yale
  */
 
 export const data: Data = [
-  {
-    id: '1',
+  {id: '1',
     data: {
       eng: 'Me',
       gender: 'M',
@@ -20,11 +19,11 @@ export const data: Data = [
         trad: '我'
       },
       phon: {
-        man: {
+        mandarin: {
           py: 'wǒ',
           zy: 'ㄨㄛ'
         },
-        can: {
+        cantonese: {
           jp: 'ngo5',
           yale: 'ngóh'
         }
@@ -46,11 +45,11 @@ export const data: Data = [
         trad: '媽媽'
       },
       phon: {
-        man: {
+        mandarin: {
           py: 'māmā',
           zy: 'ㄇㄚ ㄇㄚ'
         },
-        can: {
+        cantonese: {
           jp: 'maa4 maa1',
           yale: 'màh mā'
         }
@@ -72,11 +71,11 @@ export const data: Data = [
         trad: '爸爸'
       },
       phon: {
-        man: {
+        mandarin: {
           py: 'bàba',
           zy: 'ㄅㄚˋ ㄅㄚˋ'
         },
-        can: {
+        cantonese: {
           jp: 'baa4 baa1',
           yale: 'bàh bā'
         }
