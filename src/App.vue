@@ -54,6 +54,9 @@ async function initChart() {
     .setOnCardClick((e: any, d: any) => {
       selectedPerson.value = d.data.data
       if (!isDesktop.value) sidebarOpen.value = true
+
+      chart.updateMainId(d.data.id)
+      chart?.updateTree?.()
     })
 
   chart.updateMainId('1')
