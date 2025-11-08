@@ -7,7 +7,7 @@
             <div class='w-full flex flex-row justify-end py-4'>
                 <button 
                     v-if="!isDesktop"
-                    class='flex justify-center rounded-full hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2'
+                    class='flex justify-center rounded-full hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2 cursor-pointer'
                     @click="$emit('close')">
                     <FontAwesomeIcon 
                         :icon="faXmark"
@@ -36,6 +36,40 @@
                 </div>
             </div>
 
+            <!-- Overview-->
+            <div v-else>
+                <div class='flex flex-col items-center gap-2'>
+                    <span class='text-base text-neutral-950 dark:text-neutral-50'>
+                        {{ person['language'][language][PHONETIC_KEY][phonetic] }}
+                    </span>
+
+                    <h1 class='text-4xl text-neutral-950 dark:text-neutral-50'>
+                        {{ person['language'][language][CHARACTER_KEY][character] }}
+                    </h1>
+
+                    <button
+                        class='flex justify-center rounded-full hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2 my-2 cursor-pointer'
+                        @click="tts(
+                            person['language'][language][CHARACTER_KEY][character], 
+                            language as Languages
+                        )">
+                        <FontAwesomeIcon 
+                            :icon="faVolumeHigh"
+                            class='text-base text-neutral-950 dark:text-neutral-50' />
+                    </button>
+
+                    <h2 class='text-2xl text-neutral-950 dark:text-neutral-50'>
+                        {{ person['eng'] }}
+                    </h2>
+
+                    <span 
+                        v-if="person['engSubtitle']"
+                        class='text-base text-neutral-950 dark:text-neutral-50'>
+                        {{ person['engSubtitle'] }}
+                    </span>
+                </div>
+            </div>
+
             <!-- Options -->
             <Options />
         </div>
@@ -45,8 +79,11 @@
 <script setup lang='ts'>
 import Logo from './Logo.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faXmark, faLightbulb } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faLightbulb, faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
 import Options from './Options.vue'
+import { useOptions } from '@/composables/useOptions'
+import { CHARACTER_KEY, PHONETIC_KEY, type Languages } from '@/constants/constants'
+import { tts } from '@/utils/textToSpeech'
 
 defineProps<{
     person: Record<string, any> | null
@@ -55,4 +92,6 @@ defineProps<{
 }>()
 
 defineEmits(['close'])
+
+const { language, character, phonetic } = useOptions()
 </script>

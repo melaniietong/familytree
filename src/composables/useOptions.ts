@@ -62,13 +62,13 @@ const updateOption = (selectedOption: string, option: OptionTypes): void => {
  * ------------------------------------
  */
 
-function toggleDarkMode(): void {
+const toggleDarkMode = (): void => {
     isDark.value = !isDark.value
     document.documentElement.classList.toggle('dark', isDark.value)
     localStorage.theme = isDark.value ? 'dark' : 'light'
 }
 
-export function useOptions() {
+export const useOptions = () => {
     return {
         isDark,
         character,
