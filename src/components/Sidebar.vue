@@ -51,7 +51,8 @@
                         class='flex justify-center rounded-full hover:bg-neutral-200 hover:dark:bg-neutral-700 p-2 my-2 cursor-pointer'
                         @click="tts(
                             person['language'][language][CHARACTER_KEY][character], 
-                            language as Languages
+                            language as Languages,
+                            character as CharacterDataKeys,
                         )">
                         <FontAwesomeIcon 
                             :icon="faVolumeHigh"
@@ -82,7 +83,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faXmark, faLightbulb, faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
 import Options from './Options.vue'
 import { useOptions } from '@/composables/useOptions'
-import { CHARACTER_KEY, PHONETIC_KEY, type Languages } from '@/constants/constants'
+import { 
+    CHARACTER_KEY, 
+    PHONETIC_KEY, 
+    type Languages, 
+    type CharacterDataKeys 
+} from '@/constants/constants'
 import { tts } from '@/utils/textToSpeech'
 
 defineProps<{
