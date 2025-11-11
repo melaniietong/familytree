@@ -11,8 +11,6 @@ export const tts = (text: string, lang: Languages, char: CharacterDataKeys) => {
         return
     }
 
-    console.log(char)
-
     let voiceOption = ''
     switch (lang) {
         case LANGUAGE.MANDARIN: {
@@ -24,7 +22,6 @@ export const tts = (text: string, lang: Languages, char: CharacterDataKeys) => {
             break
         }
     }
-    console.log(voiceOption)
 
     const speech = new SpeechSynthesisUtterance(text)
     speech.lang = voiceOption
