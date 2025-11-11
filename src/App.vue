@@ -6,7 +6,7 @@
       :isDesktop=isDesktop
       @close="sidebarOpen = false" />
 
-    <div id='chart' class='flex-1 f3 relative overflow-hidden z-0 lg:ml-16'></div>
+    <div id='chart' class='flex-1 f3 relative overflow-hidden z-0'></div>
     
     <button
       v-if="!isDesktop && !sidebarOpen"
