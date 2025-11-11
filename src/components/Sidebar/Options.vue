@@ -51,7 +51,7 @@
 
 <script setup lang='ts'>
 import { onMounted, watchEffect } from 'vue'
-import Dropdown from './Dropdown.vue'
+import Dropdown from './../Dropdown.vue'
 import { characterOptions, languageOptions } from '@/data/options'
 import { 
     LANGUAGE, 

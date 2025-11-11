@@ -3,7 +3,6 @@
     <Sidebar
       :person=selectedPerson
       :sidebarOpen=sidebarOpen
-      :isDesktop=isDesktop
       @close="sidebarOpen = false" />
 
     <div id='chart' class='flex-1 f3 relative overflow-hidden z-0'></div>
@@ -31,13 +30,14 @@ import { cardHtml } from './utils/card'
 import { useOptions } from './composables/useOptions'
 import { useTabs } from './composables/useTabs'
 import { TAB } from './constants/tabs'
+import { useSizing } from './composables/useSizing'
 
 const selectedPerson = ref<Record<string, any> | null>(null)
 const sidebarOpen = ref<boolean>(false)
-const isDesktop = ref<boolean>(window.innerWidth >= 1024)
 
 const { character, language, phonetic, isDark } = useOptions()
 const { updateTab } = useTabs()
+const { isDesktop } = useSizing()
 
 let chart: any = null
 
