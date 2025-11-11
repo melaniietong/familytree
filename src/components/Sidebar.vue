@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <!-- Overview-->
+            <!-- Tabs -->
             <div 
                 v-else
                 class='w-full flex flex-col items-center gap-6 px-4 my-8 overflow-y-scroll overflow-x-auto flex-1'>
@@ -45,22 +45,22 @@
                     class='flex flex-row justify-center rounded-full border border-neutral-400 dark:border-neutral-600'>
                     <button
                         class='px-4 py-1 rounded-l-full text-xs text-neutral-600 dark:text-neutral-400'
-                        :class="activeTab === 'overview' ? 'bg-neutral-200 dark:bg-neutral-700' : 'hover:bg-neutral-200 hover:dark:bg-neutral-700'"
-                        @click="activeTab = 'overview'">
+                        :class="activeTab === TAB.OVERVIEW ? 'bg-neutral-200 dark:bg-neutral-700' : 'hover:bg-neutral-200 hover:dark:bg-neutral-700'"
+                        @click="activeTab = TAB.OVERVIEW">
                         Info
                     </button>
                     
                     <button
                         v-if="hasVariations"
                         class='px-4 py-1 rounded-r-full text-xs text-neutral-600 dark:text-neutral-400'
-                        :class="activeTab === 'variations' ? 'bg-neutral-200 dark:bg-neutral-700' : 'hover:bg-neutral-200 hover:dark:bg-neutral-700'"
-                        @click="activeTab = 'variations'">
+                        :class="activeTab === TAB.VARIATIONS ? 'bg-neutral-200 dark:bg-neutral-700' : 'hover:bg-neutral-200 hover:dark:bg-neutral-700'"
+                        @click="activeTab = TAB.VARIATIONS">
                         Variations
                     </button>
                 </div>
 
                 <div 
-                    v-if="activeTab === 'overview'"
+                    v-if="activeTab === TAB.OVERVIEW"
                     class='w-full h-100 flex flex-col items-center justify-center gap-2'>
                     <span class='text-base text-neutral-950 dark:text-neutral-50'>
                         {{ person['language'][language][PHONETIC_KEY][phonetic] }}
@@ -141,6 +141,7 @@ import {
 } from '@/constants/constants'
 import { tts } from '@/utils/textToSpeech'
 import { useTabs } from '@/composables/useTabs'
+import { TAB } from '@/constants/tabs'
 
 const props = defineProps<{
     person: Record<string, any> | null

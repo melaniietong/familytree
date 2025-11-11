@@ -1,6 +1,7 @@
 import { ref } from 'vue'
+import { TAB, type Tabs } from '@/constants/tabs'
 
-const activeTab = ref<'overview' | 'variations'>('overview')
+const activeTab = ref<Tabs>(TAB.OVERVIEW)
 
 export const useTabs = () => {
     return { activeTab }
