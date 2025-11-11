@@ -1,5 +1,5 @@
 <template>
-    <div class='py-4 max-sm:px-4 border-t border-neutral-200 dark:border-neutral-700 flex flex-col gap-4'>
+    <div class='py-4 max-sm:px-4 border-t border-neutral-200 dark:border-neutral-700 flex flex-col gap-4 shrink-0'>
         <div class='flex flex-row justify-between items-center'>
             <span class='text-xs text-neutral-600 dark:text-neutral-400'>
                 Character
