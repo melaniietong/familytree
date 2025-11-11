@@ -29,12 +29,15 @@ import Sidebar from './components/Sidebar.vue'
 import { data } from './data/data'
 import { cardHtml } from './utils/card'
 import { useOptions } from './composables/useOptions'
+import { useTabs } from './composables/useTabs'
+import { TAB } from './constants/tabs'
 
 const selectedPerson = ref<Record<string, any> | null>(null)
 const sidebarOpen = ref<boolean>(false)
 const isDesktop = ref<boolean>(window.innerWidth >= 1024)
 
 const { character, language, phonetic, isDark } = useOptions()
+const { updateTab } = useTabs()
 
 let chart: any = null
 
@@ -54,6 +57,8 @@ async function initChart() {
     .setOnCardClick((e: any, d: any) => {
       selectedPerson.value = d.data.data
       if (!isDesktop.value) sidebarOpen.value = true
+
+      updateTab(TAB.OVERVIEW)
 
       chart.updateMainId(d.data.id)
       chart?.updateTree?.()
