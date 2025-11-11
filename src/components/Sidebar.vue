@@ -98,8 +98,8 @@
                         :key="i"
                         class='flex flex-row items-center justify-between gap-4 px-4 py-4 border-b border-neutral-200 dark:border-neutral-700'>
                         <div class='flex flex-col items-center gap-2'>
-                            <span class='text-xs text-neutral-950 dark:text-neutral-50'>{{ v.phon[phonetic] }}</span>
-                            <span class='text-2xl text-neutral-950 dark:text-neutral-50'>{{ v.char[character] }}</span>
+                            <span class='text-xs text-center text-neutral-950 dark:text-neutral-50'>{{ v.phon[phonetic] }}</span>
+                            <span class='text-2xl text-center text-neutral-950 dark:text-neutral-50'>{{ v.char[character] }}</span>
                         </div>
 
                         <button
