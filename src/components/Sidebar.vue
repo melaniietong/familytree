@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import Logo from './Logo.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faXmark, faLightbulb, faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
@@ -140,6 +140,7 @@ import {
     type CharacterDataKeys 
 } from '@/constants/constants'
 import { tts } from '@/utils/textToSpeech'
+import { useTabs } from '@/composables/useTabs'
 
 const props = defineProps<{
     person: Record<string, any> | null
@@ -150,8 +151,7 @@ const props = defineProps<{
 defineEmits(['close'])
 
 const { language, character, phonetic } = useOptions()
-
-const activeTab = ref<'overview' | 'variations'>('overview')
+const { activeTab } = useTabs()
 
 const hasVariations = computed((): boolean =>
     props.person?.language?.[language.value]?.variations?.length > 0
