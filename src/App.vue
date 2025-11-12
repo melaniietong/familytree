@@ -21,6 +21,7 @@
 <script setup lang='ts'>
 import { ref, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import * as f3 from 'family-chart'
+import type { TreeDatum } from 'family-chart'
 import 'family-chart/styles/family-chart.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -31,17 +32,18 @@ import { useOptions } from './composables/useOptions'
 import { useTabs } from './composables/useTabs'
 import { TAB } from './constants/tabs'
 import { useSizing } from './composables/useSizing'
+import type { Person, ChartInstance } from './types/data'
 
-const selectedPerson = ref<Record<string, any> | null>(null)
+const selectedPerson = ref<Person | null>(null)
 const sidebarOpen = ref<boolean>(false)
 
-const { character, language, phonetic, isDark } = useOptions()
+const { character, language, phonetic } = useOptions()
 const { updateTab } = useTabs()
 const { isDesktop } = useSizing()
 
-let chart: any = null
+let chart: ChartInstance = null
 
-async function initChart() {
+const initChart = async () => {
   await nextTick()
   const el = document.getElementById('chart')
   if (!el) return
@@ -53,14 +55,14 @@ async function initChart() {
 
   chart
     .setCardHtml()
-    .setCardInnerHtmlCreator((d: any) => cardHtml(d.data.data))
-    .setOnCardClick((e: any, d: any) => {
+    .setCardInnerHtmlCreator((d: TreeDatum) => cardHtml(d.data.data))
+    .setOnCardClick((e: MouseEvent, d: TreeDatum) => {
       selectedPerson.value = d.data.data
       if (!isDesktop.value) sidebarOpen.value = true
 
       updateTab(TAB.OVERVIEW)
 
-      chart.updateMainId(d.data.id)
+      chart?.updateMainId(d.data.id)
       chart?.updateTree?.()
     })
 
@@ -111,6 +113,7 @@ onBeforeUnmount((): void => {
 })
 </script>
 
+// Override family-chart library style
 <style>
 .link {
   stroke: #000000;

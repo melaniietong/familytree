@@ -1,9 +1,10 @@
 import { useOptions } from '@/composables/useOptions'
 import { CHARACTER_KEY, PHONETIC_KEY } from '@/constants/constants'
+import type { Person } from '@/types/data'
 
 const { character, language, phonetic } = useOptions()
 
-export const cardHtml = (data: Record<string, any>): string => `
+export const cardHtml = (data: Person): string => `
     <div class='bg-neutral-200 dark:bg-neutral-800 w-[150px] h-[230px] p-2 rounded-md cursor-pointer flex flex-col items-center justify-center gap-2'>
         <div class='flex flex-col gap-1 items-center'>
             <span class='text-xs text-neutral-950 dark:text-neutral-50'>

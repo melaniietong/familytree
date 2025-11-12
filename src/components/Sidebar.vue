@@ -53,9 +53,10 @@ import { TAB } from '@/constants/tabs'
 import { useOptions } from '@/composables/useOptions'
 import { useTabs } from '@/composables/useTabs'
 import { useSizing } from '@/composables/useSizing'
+import type { Person } from '@/types/data'
 
 const props = defineProps<{
-    person: Record<string, any> | null
+    person: Person | null
     sidebarOpen: boolean
 }>()
 

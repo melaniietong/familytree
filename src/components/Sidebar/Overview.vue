@@ -36,8 +36,6 @@
 <script setup lang='ts'>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
-import { useTabs } from '@/composables/useTabs'
-import { TAB } from '@/constants/tabs'
 import { useOptions } from '@/composables/useOptions'
 import { 
     CHARACTER_KEY, 
@@ -46,11 +44,11 @@ import {
     type CharacterDataKeys 
 } from '@/constants/constants'
 import { tts } from '@/utils/textToSpeech'
+import type { Person } from '@/types/data'
 
 defineProps<{
-    person: Record<string, any> | null
+    person: Person | null
 }>()
 
-const { activeTab } = useTabs()
 const { language, character, phonetic } = useOptions()
 </script>

@@ -38,9 +38,10 @@ import {
 } from '@/constants/constants'
 import { useOptions } from '@/composables/useOptions'
 import { tts } from '@/utils/textToSpeech'
+import type { Person } from '@/types/data'
 
 defineProps<{
-    person: Record<string, any> | null
+    person: Person | null
 }>()
 
 const { language, character, phonetic } = useOptions()
