@@ -1,0 +1,7 @@
+import { DATA_KEY } from './data'
+
+export const DROPDOWN_OPTIONS = {
+    CHARACTER: DATA_KEY.CHARACTER,
+    LANGUAGE: DATA_KEY.LANGUAGE,
+    PHONETIC: DATA_KEY.PHONETIC,
+} as const

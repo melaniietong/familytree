@@ -6,9 +6,9 @@
             </span>
             <Dropdown 
                 v-model="character"
-                :options="characterOptions"
+                :options="CHARACTER_OPTIONS"
                 key='char' 
-                @update:modelValue="e => updateOption(e, CHARACTER_KEY)"/>
+                @update:modelValue="e => updateOption(e, DATA_KEY.CHARACTER)"/>
         </div>
     
         <div class='flex flex-row justify-between items-center'>
@@ -17,9 +17,9 @@
             </span>
             <Dropdown 
                 v-model="language"
-                :options="languageOptions"
+                :options="LANGUAGE_OPTIONS"
                 key='lang' 
-                @update:modelValue="e => updateOption(e, LANGUAGE_KEY)" />
+                @update:modelValue="e => updateOption(e, DATA_KEY.LANGUAGE)" />
         </div>
         
         <div class='flex flex-row justify-between items-center'>
@@ -30,7 +30,7 @@
                 v-model="phonetic"
                 :options="phoneticOptions"
                 key='rom' 
-                @update:modelValue="e => updateOption(e, PHONETIC_KEY)" />
+                @update:modelValue="e => updateOption(e, DATA_KEY.PHONETIC)" />
         </div>
     
         <div class='flex flex-row justify-between items-center'>
@@ -50,18 +50,11 @@
 </template>
 
 <script setup lang='ts'>
-import { onMounted, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import Dropdown from './../Dropdown.vue'
-import { characterOptions, languageOptions } from '@/data/options'
-import { 
-    LANGUAGE, 
-    CHARACTER_KEY,
-    CHARACTER_DATA_KEY, 
-    LANGUAGE_KEY,
-    PHONETIC_KEY,
-    PHONETIC_DATA_KEY
-} from '@/constants/constants'
 import { useOptions } from '@/composables/useOptions'
+import { CHARACTER_OPTIONS, LANGUAGE_OPTIONS } from '@/constants/options'
+import { DATA_KEY } from '@/constants/data'
 
 const { 
     isDark,
@@ -84,11 +77,5 @@ watchEffect((): void => {
         root.classList.remove('dark')
         localStorage.theme = 'light'
     }
-})
-
-onMounted((): void => {
-    language.value = localStorage.language ?? LANGUAGE.CANTONESE
-    character.value = localStorage.character ?? CHARACTER_DATA_KEY.TRADITIONAL
-    phonetic.value = localStorage.phonetic ?? (language.value === LANGUAGE.MANDARIN ? PHONETIC_DATA_KEY.PINYIN : PHONETIC_DATA_KEY.JYUTPING)
 })
 </script>

@@ -1,11 +1,9 @@
-import { 
-    LANGUAGE, 
-    CHARACTER_DATA_KEY,
-    type Languages, 
-    type CharacterDataKeys
-} from '@/constants/constants'
+import { LANGUAGE } from '@/constants/options'
+import { CHARACTER_DATA_KEY } from '@/constants/data'
+import type { Languages } from '@/types/options'
+import type { CharacterDataKeys } from '@/types/data'
 
-export const tts = (text: string, lang: Languages, char: CharacterDataKeys) => {
+export const tts = (text: string, lang: Languages, char: CharacterDataKeys): void => {
     if (!window.speechSynthesis) {
         console.warn('Speech synthesis not supported.')
         return

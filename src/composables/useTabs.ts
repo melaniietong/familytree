@@ -1,5 +1,6 @@
 import { ref } from 'vue'
-import { TAB, type Tabs } from '@/constants/tabs'
+import { TAB } from '@/constants/tabs'
+import type { Tabs } from '@/types/tabs'
 
 const activeTab = ref<Tabs>(TAB.OVERVIEW)
 
@@ -10,7 +11,7 @@ const updateTab = (tab: Tabs): void => {
 export const useTabs = () => {
     return { 
         activeTab,
-
+        
         updateTab
     }
 }

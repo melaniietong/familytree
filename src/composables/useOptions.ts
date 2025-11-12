@@ -1,12 +1,22 @@
 import { ref, computed } from 'vue'
-import { CHARACTER_KEY, LANGUAGE_KEY, PHONETIC_KEY } from '@/constants/constants'
-import { LANGUAGE, PHONETIC_DATA_KEY } from '@/constants/constants'
 import { 
-    phoneticMandarinOptions, 
-    phoneticCantoneseOptions
-} from '@/data/options'
-import type { OptionTypes } from '@/types/dropdown'
-import type { DropdownOption } from '@/types/dropdown'
+    LANGUAGE, 
+    PHONETIC_MANDARIN_OPTIONS, 
+    PHONETIC_CANTONESE_OPTIONS, 
+    PHONETICS_DEFAULT
+} from '@/constants/options'
+import { DATA_KEY } from '@/constants/data'
+import { 
+    getStoredCharacter, 
+    getStoredLanguage, 
+    getStoredPhonetic,
+    readStorage,
+    writeStorage
+} from '@/utils/storage'
+import { isLanguage, isCharacterDataKey, isPhoneticDataKey } from '@/utils/options'
+import type { DropdownOptions, DropdownOption } from '@/types/dropdown'
+import type { CharacterDataKeys, PhoneticDataKeys } from '@/types/data'
+import type { Languages } from '@/types/options'
 
 /*
  * ------------------------------------
@@ -14,14 +24,14 @@ import type { DropdownOption } from '@/types/dropdown'
  * ------------------------------------
  */
 
-const isDark = ref<boolean>(localStorage.theme === 'dark')
+const isDark = ref<boolean>(readStorage('theme') === 'dark')
 
-const character = ref<string>('')
-const language = ref<string>('')
-const phonetic = ref<string>('')
+const character = ref<CharacterDataKeys>(getStoredCharacter())
+const language = ref<Languages>(getStoredLanguage())
+const phonetic = ref<PhoneticDataKeys>(getStoredPhonetic(language.value))
 
 const phoneticOptions = computed((): DropdownOption[] => {
-    return language.value === LANGUAGE.MANDARIN ? phoneticMandarinOptions : phoneticCantoneseOptions
+    return language.value === LANGUAGE.MANDARIN ? PHONETIC_MANDARIN_OPTIONS : PHONETIC_CANTONESE_OPTIONS
 })
 
 /*
@@ -30,27 +40,30 @@ const phoneticOptions = computed((): DropdownOption[] => {
  * ------------------------------------
  */
 
-const updateOption = (selectedOption: string, option: OptionTypes): void => {
+const updateOption = (selectedOption: string, option: DropdownOptions): void => {
     switch (option) {
-        case CHARACTER_KEY: {
+        case DATA_KEY.CHARACTER: {
+            if (!isCharacterDataKey(selectedOption)) return
             character.value = selectedOption
-            localStorage.character = selectedOption
+            writeStorage('character', selectedOption)
             break
         }
 
-        case LANGUAGE_KEY: {
+        case DATA_KEY.LANGUAGE: {
+            if (!isLanguage(selectedOption)) return
             language.value = selectedOption
-            localStorage.language = selectedOption
+            writeStorage('language', selectedOption)
 
             // When language changes, set default phonetic
-            phonetic.value = selectedOption === LANGUAGE.MANDARIN ? PHONETIC_DATA_KEY.PINYIN : PHONETIC_DATA_KEY.JYUTPING
-            localStorage.phonetic = phonetic.value
+            phonetic.value = PHONETICS_DEFAULT[selectedOption]
+            writeStorage('phonetic', phonetic.value)
             break
         }
 
-        case PHONETIC_KEY: {
+        case DATA_KEY.PHONETIC: {
+            if (!isPhoneticDataKey(selectedOption)) return
             phonetic.value = selectedOption
-            localStorage.phonetic = selectedOption
+            writeStorage('phonetic', selectedOption)
             break
         }
     }
@@ -64,8 +77,9 @@ const updateOption = (selectedOption: string, option: OptionTypes): void => {
 
 const toggleDarkMode = (): void => {
     isDark.value = !isDark.value
-    document.documentElement.classList.toggle('dark', isDark.value)
-    localStorage.theme = isDark.value ? 'dark' : 'light'
+    const root = typeof document === 'undefined' ? null : document.documentElement
+    root?.classList.toggle('dark', isDark.value)
+    writeStorage('theme', isDark.value ? 'dark' : 'light')
 }
 
 export const useOptions = () => {
