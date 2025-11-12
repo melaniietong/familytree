@@ -1,48 +1,55 @@
-# familytree
+# 🐼 FamilyTree
 
-This template should help get you started developing with Vue 3 in Vite.
+Chinese family terms can be complex, reflecting centuries of cultural values around hierarchy, age, and kinship. 
 
-## Recommended IDE Setup
+For example, in English you might call both your mother’s sister and your father’s sister “aunt”, but in Chinese languages, each could have a distinct term that reflects not only which side of the family she’s on, but sometimes even her relative age!
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+This interactive Vue app (with TS, Tailwind, & [family-chart](https://github.com/donatso/family-chart)) makes exploring and learning Chinese family terms simpler.
 
-## Recommended Browser Setup
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?logo=vuedotjs&logoColor=fff) ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff) ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Dark/light mode
+- Integration with browser speech synthesis (Web Speech API) for pronunciation audio
+- Multiple language/reading/phonetic options:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+| Feature | Options |
+|---|---|
+| Characters | Simplified, Traditional |
+| Languages | Cantonese, Mandarin |
+| Phonetics | Cantonese (Jyutping, Yale), Mandarin (Pinyin, Zhuyin) |
 
-## Customize configuration
+## Setup
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+Versions:
+```
+Node: 24.9.0
+NPM: 11.6.0
 ```
 
-### Compile and Hot-Reload for Development
+Install:
+```bash
+npm i
+```
 
-```sh
+To run the app locally with hot-reload:
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+To compile and minify:
+```bash
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
+To lint:
+```bash
 npm run lint
 ```
+
+## Report a bug
+
+Found a bug or something not working as expected? 🐛 Help improve the project by opening an issue! 
+
+For terminology-related issues, please include external sources or citations to support your suggestion.
