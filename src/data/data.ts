@@ -1091,7 +1091,7 @@ export const data: Data = [
     },
     rels: {
       parents: [],
-      spouses: [13],
+      spouses: ['13'],
       children: []
     }
   }
