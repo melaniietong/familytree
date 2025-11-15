@@ -816,7 +816,7 @@ export const data: Data = [
     },
     rels: {
       parents: ['6', '7'],
-      spouses: [],
+      spouses: ['18'],
       children: []
     }
   },
@@ -1092,6 +1092,48 @@ export const data: Data = [
     rels: {
       parents: [],
       spouses: ['13'],
+      children: []
+    }
+  },
+  {
+    id: '18',
+    data: {
+      eng: 'Uncle',
+      engSubtitle: '(Maternal aunt\'s husband)',
+      gender: 'M',
+      language: {
+        mandarin: {
+          char: { simp: '姨夫', trad: '姨夫' },
+          phon: { py: 'yí fu', zy: 'ㄧˊ ˙ㄈㄨ' },
+          variations: [
+            {
+              char: { simp: '姨父', trad: '姨父' },
+              phon: { py: 'yí fu', zy: 'ㄧˊ ˙ㄈㄨ' },
+              description: 'Alternative'
+            },
+            {
+              char: { simp: '姨丈', trad: '姨丈' },
+              phon: { py: 'yí zhàng', zy: 'ㄧˊ ㄓㄤˋ' },
+              description: 'Alternative'
+            }
+          ]
+        },
+        cantonese: {
+          char: { simp: '姨夫', trad: '姨夫' },
+          phon: { jp: 'ji4 fu1', yale: 'yìh fū' },
+          variations: [
+            {
+              char: { simp: '姨丈', trad: '姨丈' },
+              phon: { jp: 'ji4 zoeng6', yale: 'yìh jéung' },
+              description: 'Alternative'
+            }
+          ]
+        }
+      }
+    },
+    rels: {
+      parents: [],
+      spouses: ['12'],
       children: []
     }
   }
