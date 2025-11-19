@@ -1054,7 +1054,7 @@ export const data: Data = [
     },
     rels: {
       parents: ['4', '5'],
-      spouses: [],
+      spouses: ['20'],
       children: []
     }
   },
@@ -1196,6 +1196,53 @@ export const data: Data = [
     rels: {
       parents: [],
       spouses: ['15'],
+      children: []
+    }
+  },
+  {
+    id: '20',
+    data: {
+      eng: 'Aunt',
+      engSubtitle: '(Paternal older uncle\'s wife)',
+      gender: 'F',
+      language: {
+        mandarin: {
+          char: { simp: '伯母', trad: '伯母' },
+          phon: { py: 'bó mǔ', zy: 'ㄅㄛˊ ㄇㄨˇ' },
+          variations: [
+            {
+              char: { simp: '大妈', trad: '大媽' },
+              phon: { py: 'dà mā', zy: 'ㄉㄚˋ ㄇㄚ' },
+              description: 'Colloquial'
+            },
+            {
+              char: { simp: '伯娘', trad: '伯娘' },
+              phon: { py: 'bó niáng', zy: 'ㄅㄛˊ ㄋㄧㄤˊ' },
+              description: 'Colloquial'
+            }
+          ]
+        },
+        cantonese: {
+          char: { simp: '伯母', trad: '伯母' },
+          phon: { jp: 'baak3 mou5', yale: 'baak móuh' },
+          variations: [
+            {
+              char: { simp: '大妈', trad: '大媽' },
+              phon: { jp: 'daai6 maa1', yale: 'daaih mā' },
+              description: 'Colloquial'
+            },
+            {
+              char: { simp: '伯娘', trad: '伯娘' },
+              phon: { jp: 'baak3 noeng4', yale: 'baak nèuhng' },
+              description: 'Colloquial'
+            }
+          ]
+        }
+      }
+    },
+    rels: {
+      parents: [],
+      spouses: ['16'],
       children: []
     }
   }
