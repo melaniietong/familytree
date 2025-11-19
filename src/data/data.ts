@@ -997,7 +997,7 @@ export const data: Data = [
     },
     rels: {
       parents: ['4', '5'],
-      spouses: [],
+      spouses: ['19'],
       children: []
     }
   },
@@ -1134,6 +1134,68 @@ export const data: Data = [
     rels: {
       parents: [],
       spouses: ['12'],
+      children: []
+    }
+  },
+  {
+    id: '19',
+    data: {
+      eng: 'Aunt',
+      engSubtitle: '(Paternal younger uncle\'s wife)',
+      gender: 'F',
+      language: {
+        mandarin: {
+          char: { simp: '婶母', trad: '嬸母' },
+          phon: { py: 'shěn mǔ', zy: 'ㄕㄣˇ ㄇㄨˇ' },
+          variations: [
+            {
+              char: { simp: '叔母', trad: '叔母' },
+              phon: { py: 'shū mǔ', zy: 'ㄕㄨ ㄇㄨˇ' },
+              description: 'Alternative'
+            },
+            {
+              char: { simp: '叔母', trad: '嬸子' },
+              phon: { py: 'shěn zi', zy: 'ㄕㄣˇ ˙ㄗ' },
+              description: 'Colloquial'
+            },
+            {
+              char: { simp: '婶婶', trad: '嬸嬸' },
+              phon: { py: 'shěn shen', zy: 'ㄕㄣˇ ˙ㄕㄣ' },
+              description: 'Colloquial'
+            }
+          ]
+        },
+        cantonese: {
+          char: { simp: '婶母', trad: '嬸母' },
+          phon: { jp: 'sam2 mou5', yale: 'sám móuh' },
+          variations: [
+            {
+              char: { simp: '婶子', trad: '叔母' },
+              phon: { jp: 'suk1 mou5', yale: 'sūk móuh' },
+              description: 'Alternative'
+            },
+            {
+              char: { simp: '婶子', trad: '嬸子' },
+              phon: { jp: 'sam2 zi2', yale: 'sám jí' },
+              description: 'Colloquial'
+            },
+            {
+              char: { simp: '婶婶', trad: '嬸嬸' },
+              phon: { jp: 'sam2 sam2', yale: 'sám sám' },
+              description: 'Colloquial'
+            },
+            {
+              char: { simp: '阿婶', trad: '阿嬸' },
+              phon: { jp: 'aa3 sam2', yale: 'a sám' },
+              description: 'Colloquial'
+            }
+          ]
+        }
+      }
+    },
+    rels: {
+      parents: [],
+      spouses: ['15'],
       children: []
     }
   }
